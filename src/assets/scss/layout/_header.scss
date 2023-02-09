@@ -1,0 +1,15 @@
+.navbar {
+  background-color: $blue-bg;
+
+  .profile-img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    overflow: hidden;
+    border: 2px solid #fff;
+    & img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

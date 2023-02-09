@@ -8,6 +8,8 @@ import { FormComponent } from './dashboard/form/form.component';
 import { CardDetailsComponent } from './dashboard/card-details/card-details.component';
 import { CardListComponent } from './dashboard/card-list/card-list.component';
 import { ProfileEditComponent } from './dashboard/profile-edit/profile-edit.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ProfileEditComponent } from './dashboard/profile-edit/profile-edit.comp
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

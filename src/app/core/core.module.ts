@@ -4,12 +4,16 @@ import { HeaderComponent } from './navbar/header/header.component';
 
 
 
+
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  exports:
+  [HeaderComponent]
 })
 export class CoreModule { }
