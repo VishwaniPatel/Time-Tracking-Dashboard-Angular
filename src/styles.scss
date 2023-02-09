@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+//Add base index file
+@import "assets/scss/base/index";
+
+//Add vendor index file
+@import "assets/scss/vendor/index";
+
+//Add utilities index file
+@import "assets/scss/utilities/index";
+
+//Add component index file
+@import "assets/scss/component/index";
+
+//Add layout index file
+@import "assets/scss/layout/index";
