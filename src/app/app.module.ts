@@ -10,6 +10,7 @@ import { CardListComponent } from './dashboard/card-list/card-list.component';
 import { ProfileEditComponent } from './dashboard/profile-edit/profile-edit.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    CoreModule
+    CoreModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
