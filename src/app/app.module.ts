@@ -11,6 +11,7 @@ import { ProfileEditComponent } from './dashboard/profile-edit/profile-edit.comp
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     NgbModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
