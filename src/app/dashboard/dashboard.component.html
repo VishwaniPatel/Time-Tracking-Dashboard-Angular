@@ -1,24 +1,48 @@
-<div class="dashboard-wrapper">
+<div class="dashboard-wrapper h-100">
   <div class="container">
-    <div class="d-flex">
-      <div class="profile me-4">
+    <div class="d-flex flex-column flex-lg-row">
+      <div class="profile me-0 me-lg-4 mb-4 mb-lg-0">
         <div class="profile-card border-radius p-4">
           <div class="profile-wrapper mb-3">
             <img src="assets/images/image-jeremy.png" alt="Profile image" />
           </div>
           <div>
             <span class="title text-secondary">Report for</span>
-            <p class="profile-name mb-4">Jeremy Robson</p>
+            <p class="profile-name mb-2 mb-lg-4">Jeremy Robson</p>
           </div>
         </div>
         <div class="filter p-4">
-          <div class="mb-3">Daily</div>
-          <div class="mb-3">Weekly</div>
-          <div>Monthly</div>
+          <div class="mb-3">
+            <!-- Display daily data on click -->
+            <a
+              (click)="daily()"
+              [ngClass]="dailyClick == true ? 'text-white' : 'text-secondary'"
+              >Daily</a
+            >
+          </div>
+          <div class="mb-3">
+            <!-- Display weekly data on click -->
+            <a
+              (click)="weekly()"
+              [ngClass]="weeklyClick == true ? 'text-white' : 'text-secondary'"
+              >Weekly</a
+            >
+          </div>
+          <div>
+            <!-- Display monthly data on click -->
+            <a
+              (click)="monthly()"
+              [ngClass]="monthlyClick == true ? 'text-white' : 'text-secondary'"
+              >Monthly</a
+            >
+          </div>
         </div>
       </div>
-      <div>
-        <app-card></app-card>
+      <div class="row gy-4">
+        <!-- Display cards -->
+        <div class="col-12 col-lg-4" *ngFor="let details of cardData">
+          <app-card [data]="details"></app-card>
+        </div>
       </div>
     </div>
   </div>

@@ -1,19 +1,34 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div>
     <a class="navbar-brand" href="#">Time Tracker</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
   </div>
-  <div class="collapse navbar-collapse" id="navbarNav">
+  <div>
+    <label for="headerInput" class="d-block d-lg-none">
+      <span class="navbar-toggler-icon"></span>
+    </label>
+    <input type="checkbox" class="d-none" id="headerInput" />
+    <div class="bg-white toggle-bar text-center">
+      <ul class="nav d-md-flex flex-column">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Activities</a>
+        </li>
+      </ul>
+      <form class="d-flex p-2" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="collapse navbar-collapse d-none d-lg-block" id="toggleHeader">
     <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" routerLink="home">Dashboard</a>
@@ -32,7 +47,7 @@
       <button class="btn btn-primary" type="submit">Search</button>
     </form>
   </div>
-  <div class="d-flex align-items-center">
+  <div class="d-flex align-items-center d-none d-lg-block">
     <figure class="profile-img mb-0">
       <img src="assets/images/image-jeremy.png" alt="Profile image" />
     </figure>

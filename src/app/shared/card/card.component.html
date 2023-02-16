@@ -2,9 +2,15 @@
   <div class="card-header"></div>
   <div class="card-details p-4">
     <div class="d-flex justify-content-between">
-      <span class="categories fw-semibold">Work</span>
+      <!-- Get title of card -->
+      <span class="categories fw-semibold">{{ data.title }}</span>
       <span>
-        <svg width="21" height="5" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="21"
+          height="5"
+          xmlns="http.
+        ://www.w3.org/2000/svg"
+        >
           <path
             d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z"
             fill="#BBC0FF"
@@ -14,8 +20,16 @@
       </span>
     </div>
     <div class="duration">
-      <p class="current mb-0">32hrs</p>
-      <p class="previous">Last week 36hrs</p>
+      <div>
+        <!-- Get current data -->
+        <p class="current mb-0">
+          {{ data.current + "hrs" }}
+        </p>
+      </div>
+      <!-- Get previous data -->
+      <p class="previous mb-0">
+        {{ "Last week " + data.previous + "hrs" }}
+      </p>
     </div>
   </div>
 </div>

@@ -2,7 +2,12 @@
   background-color: $primary;
   height: 100%;
   padding: 140px;
+  @include media-breakpoint-down(lg) {
+    padding: 80px 100px;
+  }
 }
+
+// profile card style
 .profile {
   background-color: $dark-blue;
   color: $white;
@@ -21,7 +26,7 @@
       height: 100%;
       width: 100%;
     }
-    @media (max-width: 768px) {
+    @include media-breakpoint-down(lg) {
       margin-bottom: 0px;
       height: 50px;
       width: 50px;
@@ -31,7 +36,7 @@
   .profile-name {
     font-size: 40px;
     font-weight: 300;
-    @media (max-width: 768px) {
+    @include media-breakpoint-down(lg) {
       margin-bottom: 0px;
       font-size: 20px;
     }

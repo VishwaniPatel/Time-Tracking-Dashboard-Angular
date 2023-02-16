@@ -1,6 +1,7 @@
 .navbar {
   background-color: $blue-bg;
-
+  padding: 10px;
+  position: relative;
   .profile-img {
     height: 40px;
     width: 40px;
@@ -12,4 +13,17 @@
       width: 100%;
     }
   }
+}
+.toggle-bar {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+}
+#headerInput:checked + .toggle-bar {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
