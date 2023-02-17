@@ -4,21 +4,64 @@
     <div class="d-flex justify-content-between">
       <!-- Get title of card -->
       <span class="categories fw-semibold">{{ data.title }}</span>
-      <span>
-        <svg
-          width="21"
-          height="5"
-          xmlns="http.
+      <div
+        ngbDropdown
+        class="d-inline-block"
+        display="dynamic"
+        placement="bottom-end"
+      >
+        <a class="cursor-pointer" id="dropdownBasic1" ngbDropdownToggle>
+          <svg
+            width="21"
+            height="5"
+            xmlns="http.
         ://www.w3.org/2000/svg"
+          >
+            <path
+              d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z"
+              fill="#BBC0FF"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </a>
+        <div
+          ngbDropdownMenu
+          aria-labelledby="dropdownBasic1"
+          class="dropdown-menu"
         >
-          <path
-            d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z"
-            fill="#BBC0FF"
-            fill-rule="evenodd"
-          />
-        </svg>
-      </span>
+          <button ngbDropdownItem>Edit</button>
+          <button ngbDropdownItem (click)="openVerticallyCentered(content)">
+            Delete
+          </button>
+        </div>
+      </div>
     </div>
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title">Delete?</h4>
+        <button
+          type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="modal.dismiss('Cross click')"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>Are sure you want to delete?</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-light"
+          (click)="modal.close('Close click')"
+        >
+          Close
+        </button>
+        <button class="btn btn-primary" (click)="onDelete(data.id)">
+          Confirm
+        </button>
+      </div>
+    </ng-template>
     <div class="duration">
       <div>
         <!-- Get current data -->

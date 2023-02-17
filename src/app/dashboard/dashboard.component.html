@@ -41,7 +41,7 @@
       <div class="row gy-4">
         <!-- Display cards -->
         <div class="col-12 col-lg-4" *ngFor="let details of cardData">
-          <app-card [data]="details"></app-card>
+          <app-card [data]="details" (id)="onDeleteCard($event)"></app-card>
         </div>
       </div>
     </div>

@@ -22,7 +22,12 @@
     border-radius: 12px;
     margin-top: -20px;
     background-color: $dark-blue;
-
+    .cursor-pointer {
+      cursor: pointer;
+    }
+    .dropdown-toggle::after {
+      display: none;
+    }
     @include media-breakpoint-down(lg) {
       .categories {
         font-size: 12px;

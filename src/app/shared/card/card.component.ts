@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { OverlayService } from 'src/app/core/Service/overlay.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardService } from 'src/app/dashboard/dashboard.service';
 
 @Component({
   selector: 'app-card',
@@ -7,12 +10,24 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardComponent implements OnInit {
   @Input() data: any;
-  @Input() title: any;
-  constructor() {
+  @Output() id: EventEmitter<number> = new EventEmitter<number>();
+  constructor(private modalService: NgbModal,private dashboardService:DashboardService) {
     this.data = [];
-    this.title = [];
+    // this.title = " ";
   }
   ngOnInit(): void {
     
   }
+  openVerticallyCentered(content:any) {
+		this.modalService.open(content, { centered: true });
+	}
+  onDelete(id:number){
+  console.log(id);
+  this.id.emit(id);
+  // this.dashboardService.deleteCompany(id).subscribe((res)=>{
+  //   console.log("Card deleted");
+    
+  // })
+  }
+  
 }

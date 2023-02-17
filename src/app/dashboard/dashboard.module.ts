@@ -4,11 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { DialogboxComponent } from './dialogbox/dialogbox.component';
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    DialogboxComponent
   ],
   imports: [
     CommonModule,

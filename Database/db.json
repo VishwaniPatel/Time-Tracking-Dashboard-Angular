@@ -1,5 +1,7 @@
-{"data" : [
+{
+  "data": [
     {
+      "id": 1,
       "title": "Work",
       "timeframes": {
         "daily": {
@@ -17,6 +19,7 @@
       }
     },
     {
+      "id": 2,
       "title": "Play",
       "timeframes": {
         "daily": {
@@ -34,6 +37,7 @@
       }
     },
     {
+      "id": 3,
       "title": "Study",
       "timeframes": {
         "daily": {
@@ -51,6 +55,7 @@
       }
     },
     {
+      "id": 4,
       "title": "Exercise",
       "timeframes": {
         "daily": {
@@ -68,6 +73,7 @@
       }
     },
     {
+      "id": 5,
       "title": "Social",
       "timeframes": {
         "daily": {
@@ -85,6 +91,7 @@
       }
     },
     {
+      "id": 6,
       "title": "Self Care",
       "timeframes": {
         "daily": {
@@ -101,9 +108,11 @@
         }
       }
     }
+  ],
+  "profile": [
+    {
+      "userName": "Jeremy Robson",
+      "profileImage": ""
+    }
   ]
-  ,
-  "profile":[{
-    "userName": "Jeremy Robson",
-    "profileImage": ""
-  }]}
+}

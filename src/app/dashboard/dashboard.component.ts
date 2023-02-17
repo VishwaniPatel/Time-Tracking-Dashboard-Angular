@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+import { OverlayService } from '../core/Service/overlay.service';
 import { DashboardService } from './dashboard.service';
+import { DialogboxComponent } from './dialogbox/dialogbox.component';
+import { cardData } from './model/card.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +21,7 @@ export class DashboardComponent {
   public monthlyClick: boolean;
   
 
-  constructor(private dashboardService: DashboardService) {
+  constructor(private dashboardService: DashboardService, private overlayService: OverlayService) {
     this.dailyCardData = [];
     this.weeklyCardData = [];
     this.monthlyCardData = [];
@@ -30,29 +33,33 @@ export class DashboardComponent {
 
   ngOnInit(): void {
     this.getCardDetails();
-    this.daily();
+    // this.daily();
   }
   // get card details using service
   getCardDetails(){
-    this.dashboardService.getCardData().subscribe((data:any)=>{
-      this.titles=data.map((a:any)=> a.title);
+    this.dashboardService.getCardData().subscribe((data:cardData[]) =>
+    {
+      this.titles=data.map(a=> a.title);
       // map daily data to be display on cards
-      this.dailyCardData = data.map((a:any)=> {return{
+      this.dailyCardData = data.map(a=> {return{
+        id:a.id,
         title: a.title,
-        current: a.timeframes.daily.current,
-        previous: a.timeframes.daily.previous
+        current: a.timeframes?.daily?.current,
+        previous: a.timeframes?.daily?.previous
     }});
       // map weekly data to be display on cards
-      this.weeklyCardData = data.map((a:any)=>  {return{
+      this.weeklyCardData = data.map(a=>  {return{
+        id:a.id,
         title: a.title,
-        current: a.timeframes.weekly.current,
-        previous: a.timeframes.weekly.previous
+        current: a.timeframes?.weekly?.current,
+        previous: a.timeframes?.weekly?.previous
     }} );
     // map monthly data to be display on cards
-      this.monthlyCardData = data.map((a:any)=>  {return{
+      this.monthlyCardData = data.map(a=>  {return{       
+        id:a.id,
         title: a.title,
-        current: a.timeframes.monthly.current,
-        previous: a.timeframes.monthly.previous
+        current: a.timeframes?.monthly?.current,
+        previous: a.timeframes?.monthly?.previous
     }} );
     })
   }
@@ -84,4 +91,11 @@ export class DashboardComponent {
       this.weeklyClick=false;
       this.dailyClick=false;
   }
+
+  onDeleteCard(id:number){
+    this.dashboardService.deleteCompany(id).subscribe((response)=>{
+      this.getCardDetails();
+    })
+  }
+
 }
