@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './navbar/header/header.component';
 import { OverlayService } from './Service/overlay.service';
 import {OverlayModule} from '@angular/cdk/overlay';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,7 +14,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
   ],
   imports: [
     CommonModule,
-    OverlayModule
+    OverlayModule,
+    ReactiveFormsModule
   ],
   exports:
   [HeaderComponent],

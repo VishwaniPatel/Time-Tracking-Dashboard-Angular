@@ -19,6 +19,7 @@ export class DashboardComponent {
   public dailyClick: boolean;
   public weeklyClick: boolean;
   public monthlyClick: boolean;
+  public serchBoxText: string;
   
 
   constructor(private dashboardService: DashboardService, private overlayService: OverlayService) {
@@ -29,30 +30,35 @@ export class DashboardComponent {
     this.dailyClick = false;
     this.weeklyClick = false;
     this.monthlyClick = false;
+    this.serchBoxText = '';
   }
-
+  
   ngOnInit(): void {
+    this.dashboardService.seacrhBoxText$.subscribe((res:any)=>{
+      if(res){
+        this.getCardDetails();
+      }
+    })
     this.getCardDetails();
-    // this.daily();
   }
   // get card details using service
   getCardDetails(){
     this.dashboardService.getCardData().subscribe((data:cardData[]) =>
     {
-      this.titles=data.map(a=> a.title);
+      // this.titles=data.map(a=> a.title);
       // map daily data to be display on cards
       this.dailyCardData = data.map(a=> {return{
         id:a.id,
         title: a.title,
         current: a.timeframes?.daily?.current,
         previous: a.timeframes?.daily?.previous
-    }});
-      // map weekly data to be display on cards
-      this.weeklyCardData = data.map(a=>  {return{
-        id:a.id,
-        title: a.title,
-        current: a.timeframes?.weekly?.current,
-        previous: a.timeframes?.weekly?.previous
+      }});
+    // map weekly data to be display on cards
+    this.weeklyCardData = data.map(a=>  {return{
+      id:a.id,
+      title: a.title,
+      current: a.timeframes?.weekly?.current,
+      previous: a.timeframes?.weekly?.previous
     }} );
     // map monthly data to be display on cards
       this.monthlyCardData = data.map(a=>  {return{       
@@ -60,18 +66,19 @@ export class DashboardComponent {
         title: a.title,
         current: a.timeframes?.monthly?.current,
         previous: a.timeframes?.monthly?.previous
-    }} );
+      }} );
+      this.daily();
     })
   }
-
+  
   /**
    * On click of daily 
-   */
-  daily(){
-    this.cardData = this.dailyCardData;
-      this.dailyClick = true;
-      this.monthlyClick=false;
-      this.weeklyClick=false;
+  */
+ daily(){
+   this.cardData = this.dailyCardData;
+   this.dailyClick = true;
+   this.monthlyClick=false;
+   this.weeklyClick=false;
   }
   /**
    * On click of weekly 

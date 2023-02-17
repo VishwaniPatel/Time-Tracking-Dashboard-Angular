@@ -16,15 +16,28 @@
           <a class="nav-link" href="#">Activities</a>
         </li>
       </ul>
-      <form class="d-flex p-2" role="search">
+      <form class="d-flex p-2" role="search" [formGroup]="Form">
         <input
           class="form-control me-2"
-          type="search"
           placeholder="Search"
-          aria-label="Search"
+          [(ngModel)]="searchBoxText"
+          formControlName="searchinput"
         />
-        <button class="btn btn-primary" type="submit">Search</button>
+        <button
+          class="btn btn-primary"
+          [disabled]="Form.invalid"
+          (click)="onSearch()"
+        >
+          Search
+        </button>
       </form>
+
+      <!-- <form class="form-group has-search me-4 bg-light d-flex" [formGroup]="Form">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchBoxText"
+            >
+        <button class="bi bi-search btn bg-white " [disabled]="Form.invalid" (click)="onSearch()"></button>
+        <span class="bi bi-search form-control-feedback search-icon"></span> -->
+      <!-- </form> -->
     </div>
   </div>
 

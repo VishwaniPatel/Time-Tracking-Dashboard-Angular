@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { cardData } from './model/card.model';
 
 @Injectable({
@@ -8,8 +8,13 @@ import { cardData } from './model/card.model';
 })
 export class DashboardService {
   private baseUrl: string;
+  public searchBox: Subject<any>;
+  public seacrhBoxText$: Observable<any>;
+
   constructor(private http: HttpClient) {
     this.baseUrl = "http://localhost:3000/";
+    this.searchBox = new Subject;
+    this.seacrhBoxText$ = this.searchBox.asObservable();
    }
    
   // HTTP get service to get data from database
