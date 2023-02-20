@@ -40,7 +40,10 @@
       </div>
       <div class="row gy-4">
         <!-- Display cards -->
-        <div class="col-12 col-lg-4" *ngFor="let details of cardData">
+        <div
+          class="col-12 col-lg-4"
+          *ngFor="let details of cardData | search : search"
+        >
           <app-card [data]="details" (id)="onDeleteCard($event)"></app-card>
         </div>
       </div>

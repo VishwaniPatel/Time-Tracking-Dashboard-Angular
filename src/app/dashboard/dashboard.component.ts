@@ -20,6 +20,7 @@ export class DashboardComponent {
   public weeklyClick: boolean;
   public monthlyClick: boolean;
   public serchBoxText: string;
+  public search: any;
   
 
   constructor(private dashboardService: DashboardService, private overlayService: OverlayService) {
@@ -31,6 +32,9 @@ export class DashboardComponent {
     this.weeklyClick = false;
     this.monthlyClick = false;
     this.serchBoxText = '';
+    this.dashboardService.searchBox.subscribe((res) => {
+      this.search = res;
+    })
   }
   
   ngOnInit(): void {
