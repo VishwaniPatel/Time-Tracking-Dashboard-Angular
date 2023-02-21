@@ -6,12 +6,12 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class OverlayService {
   public closeDialog: Subject<boolean>;
-  public instance: any;
+public overlayData: any;
   constructor(private overLay: Overlay) {
     this.closeDialog = new Subject();
    }
 
-  open(component:any){
+  open(component:any): ComponentRef<any>{
     const positionStrategy = this.overLay.position().global().centerHorizontally().centerVertically();
 
     const overlayRef = this.overLay.create({
@@ -22,7 +22,7 @@ export class OverlayService {
     });
 
     const portal = new ComponentPortal(component);
-    overlayRef.attach(portal);
+    this.overlayData= overlayRef.attach(portal);
 
     overlayRef.backdropClick().subscribe(() => { overlayRef.detach(); });
 
@@ -31,7 +31,7 @@ export class OverlayService {
         overlayRef.detach();
       }
     });
-    return this.instance;
+    return this.overlayData;
   }
 
 }

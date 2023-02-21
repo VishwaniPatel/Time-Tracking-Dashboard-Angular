@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
 import { DashboardService } from 'src/app/dashboard/Service/dashboard.service';
 
 
@@ -12,6 +13,9 @@ export class HeaderComponent {
   public searchBoxText: string;
   public status: boolean;
   public Form: FormGroup;
+  // public searchSubject : Subject<any>;
+  // public search$ : Observable;
+
 
   constructor(private dashboardService:DashboardService, private formBuilder:FormBuilder){
     this.status = false;
@@ -21,10 +25,9 @@ export class HeaderComponent {
     })
   }
   onSearch() {
-    debugger
+    // debugger
     this.dashboardService.searchBox.next(this.searchBoxText);
     console.log(this.searchBoxText);
-    console.log("Click");
-    
+    // console.log("Click");
   }
 }

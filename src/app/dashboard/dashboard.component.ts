@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { OverlayService } from '../core/Service/overlay.service';
 import { DashboardService } from './Service/dashboard.service';
 import { DialogboxComponent } from './dialogbox/dialogbox.component';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormComponent } from './form/form.component';
 import { cardData } from './model/card.model';
 import { DataTransferService } from './Service/data-transfer.service';
@@ -23,27 +23,22 @@ export class DashboardComponent {
   public weeklyClick: boolean;
   public monthlyClick: boolean;
   public searchBoxText: any;
-  public searchInput: any;
-  // public Form: FormGroup;
+  public alldata: any;
+  public Form: FormGroup;
   
 
-  constructor(private dashboardService: DashboardService, private overlayService: OverlayService,private dataTransfer:DataTransferService) {
+  constructor(private dashboardService: DashboardService,private fb : FormBuilder, private overlayService: OverlayService,private dataTransfer:DataTransferService) {
     this.dailyCardData = [];
     this.weeklyCardData = [];
     this.monthlyCardData = [];
     this.data = [];
+    this.alldata = [];
     this.dailyClick = false;
     this.weeklyClick = false;
     this.monthlyClick = false;
-    // this.searchBoxText = '';
-    this.dashboardService.searchBox.subscribe((res) => {
-      this.searchInput = res;
-      console.log(res);
-      
+    this.Form = this.fb.group({
+      searchinput: ['', [Validators.required, Validators.minLength(2)]]
     })
-    // this.Form = this.formBuilder.group({
-    //   searchinput: ['', [Validators.required, Validators.minLength(2)]]
-    // })
   }
   
   ngOnInit(): void {
@@ -56,7 +51,10 @@ export class DashboardComponent {
 
 
     this.dashboardService.seacrhBoxText$.subscribe((res:any)=>{
+      console.log(res);
+      
       if(res){
+        this.searchBoxText=res;
         this.getCardDetails();
       }
     })
@@ -66,6 +64,7 @@ export class DashboardComponent {
   getCardDetails(){
     this.dashboardService.getCardData().subscribe((data:cardData[]) =>
     {
+      this.alldata = data;
       // this.titles=data.map(a=> a.title);
       // map daily data to be display on cards
       this.dailyCardData = data.map(a=> {return{
@@ -128,5 +127,8 @@ export class DashboardComponent {
   onAdd(){
     this.overlayService.open(FormComponent);
   }
+  // onEditCard(id:number){
+  //   this.dashboardService.editCardData(this.cardData)
+  // }
 
 }

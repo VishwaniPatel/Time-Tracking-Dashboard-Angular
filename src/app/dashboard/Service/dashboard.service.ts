@@ -34,4 +34,9 @@ export class DashboardService {
     const url: string = this.baseUrl + 'data/';
     return this.http.post<cardData[]>(url,cardData);
   }
+  // HTTP put service to update data from database
+  editCardData(cardData:cardData[], id: number): Observable<cardData[]> {
+    const url: string = this.baseUrl + 'data/' + id;
+    return this.http.put<cardData[]>(url, cardData);
+  }
 }

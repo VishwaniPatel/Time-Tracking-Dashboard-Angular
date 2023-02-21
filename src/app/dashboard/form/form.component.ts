@@ -59,24 +59,44 @@ constructor(
   this.isSubmitted = false
 
   // /for getting data through id 
-  this.actRoute.params.subscribe(res => {
-    this.id = res['id'];
-
-    //getting data through id
-    // this.getID();
-  })
+  // this.actRoute.params.subscribe(res => {
+  //   this.id = res['id'];
+  // })
   //initializing cardData
   this.cardData = []
+}
+
+ngOnInit(): void{
+  this.dataTransfer.id$.subscribe((id)=>{
+    if(id){
+      this.id=id;
+     this.dashboardService.getById(Number(id)).subscribe((cardData:cardData[])=>{
+        this.cardForm.patchValue(cardData);
+      })     
+    }
+  })
 }
 get f(): { [key: string]: AbstractControl; } {
   return this.cardForm.controls;
 }
-// get fn() {
-//   // const group = this.cardForm['controls']
-//   return this.cardForm.controls['timeframes'].controls
-// }
+
 
 onSave(){
+if(this.id){
+  this.updateCardData();
+  console.log("Update");
+  
+}
+else{
+  this.addCardData();
+  console.log("Add");
+  
+}
+
+  
+}
+
+addCardData(){
   this.dashboardService.addCardData(this.cardForm.value).subscribe((res:cardData[]) => {
     this.dataTransfer.getCardData(res);
     this.onReset();
@@ -87,4 +107,13 @@ onSave(){
 onReset(){
   this.cardForm.reset();
 }
+updateCardData(){
+  this.dashboardService.editCardData(this.cardForm.value,Number(this.id)).subscribe(res=>{
+    this.dataTransfer.getCardData(res);
+    this.onReset();
+  })
+  this.overlayService.closeDialog.next(true);
 }
+
+}
+

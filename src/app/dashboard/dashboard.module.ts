@@ -17,8 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DashboardRoutingModule,
     SharedModule,
     HttpClientModule,
-    // FormsModule,
-    // ReactiveFormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     DashboardComponent

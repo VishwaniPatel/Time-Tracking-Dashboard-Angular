@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { cardData } from '../model/card.model';
 
 @Injectable({
@@ -8,7 +8,12 @@ import { cardData } from '../model/card.model';
 export class DataTransferService {
 
   public communicationData:Subject<cardData[]>;
+  public idTransfer:BehaviorSubject<any>;
+  public id$ : Observable<number>;
+  
   constructor() {
+    this.idTransfer = new BehaviorSubject('');
+    this.id$ = this.idTransfer.asObservable();
     this.communicationData = new Subject();
    }
    getCardData(cardData: cardData[]) {

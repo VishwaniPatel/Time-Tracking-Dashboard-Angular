@@ -29,7 +29,7 @@
           aria-labelledby="dropdownBasic1"
           class="dropdown-menu"
         >
-          <button ngbDropdownItem>Edit</button>
+          <button ngbDropdownItem (click)="onEdit(data.id)">Edit</button>
           <button ngbDropdownItem (click)="openVerticallyCentered(content)">
             Delete
           </button>
