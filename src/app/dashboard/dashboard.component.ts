@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { OverlayService } from '../core/Service/overlay.service';
-import { DashboardService } from './dashboard.service';
+import { DashboardService } from './Service/dashboard.service';
 import { DialogboxComponent } from './dialogbox/dialogbox.component';
+// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormComponent } from './form/form.component';
 import { cardData } from './model/card.model';
+import { DataTransferService } from './Service/data-transfer.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,11 +22,12 @@ export class DashboardComponent {
   public dailyClick: boolean;
   public weeklyClick: boolean;
   public monthlyClick: boolean;
-  public serchBoxText: string;
-  public search: any;
+  public searchBoxText: any;
+  public searchInput: any;
+  // public Form: FormGroup;
   
 
-  constructor(private dashboardService: DashboardService, private overlayService: OverlayService) {
+  constructor(private dashboardService: DashboardService, private overlayService: OverlayService,private dataTransfer:DataTransferService) {
     this.dailyCardData = [];
     this.weeklyCardData = [];
     this.monthlyCardData = [];
@@ -31,13 +35,26 @@ export class DashboardComponent {
     this.dailyClick = false;
     this.weeklyClick = false;
     this.monthlyClick = false;
-    this.serchBoxText = '';
+    // this.searchBoxText = '';
     this.dashboardService.searchBox.subscribe((res) => {
-      this.search = res;
+      this.searchInput = res;
+      console.log(res);
+      
     })
+    // this.Form = this.formBuilder.group({
+    //   searchinput: ['', [Validators.required, Validators.minLength(2)]]
+    // })
   }
   
   ngOnInit(): void {
+    //Loads the data when it is added or updated
+    this.dataTransfer.communicationData.subscribe((data) => {
+      if (data) {
+        this.getCardDetails();
+      }
+    })
+
+
     this.dashboardService.seacrhBoxText$.subscribe((res:any)=>{
       if(res){
         this.getCardDetails();
@@ -107,6 +124,9 @@ export class DashboardComponent {
     this.dashboardService.deleteCompany(id).subscribe((response)=>{
       this.getCardDetails();
     })
+  }
+  onAdd(){
+    this.overlayService.open(FormComponent);
   }
 
 }

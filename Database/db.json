@@ -89,6 +89,24 @@
           "previous": 11
         }
       }
+    },
+    {
+      "title": "Project",
+      "timeframes": {
+        "daily": {
+          "current": "2",
+          "previous": "5"
+        },
+        "weekly": {
+          "current": "4",
+          "previous": "8"
+        },
+        "monthly": {
+          "current": "3",
+          "previous": "9"
+        }
+      },
+      "id": 11
     }
   ],
   "profile": [

@@ -15,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     OverlayModule,
-    ReactiveFormsModule
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
+    FormsModule,
   ],
   exports:
   [HeaderComponent],

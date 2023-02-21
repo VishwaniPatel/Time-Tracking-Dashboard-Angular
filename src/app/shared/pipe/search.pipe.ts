@@ -12,7 +12,7 @@ export class SearchPipe implements PipeTransform {
    * @param searchData
    * @returns cardData[]
    */
-  transform(value: cardData[], searchData: string): unknown {
+  transform(value: cardData[], searchData: string): cardData[]{
     if (!searchData) {
       return value;
     }

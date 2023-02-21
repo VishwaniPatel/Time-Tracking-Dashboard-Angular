@@ -16,20 +16,15 @@
           <a class="nav-link" href="#">Activities</a>
         </li>
       </ul>
-      <form class="d-flex p-2" role="search" [formGroup]="Form">
+      <form class="form-group has-search d-flex p-2" [formGroup]="Form">
         <input
+          type="text"
           class="form-control me-2"
           placeholder="Search"
           [(ngModel)]="searchBoxText"
           formControlName="searchinput"
         />
-        <button
-          class="btn btn-primary"
-          [disabled]="Form.invalid"
-          (click)="onSearch()"
-        >
-          Search
-        </button>
+        <!-- <button class="btn btn-primary" (click)="onSearch()">Search</button> -->
       </form>
 
       <!-- <form class="form-group has-search me-4 bg-light d-flex" [formGroup]="Form">
@@ -60,7 +55,7 @@
       <button class="btn btn-primary" type="submit">Search</button>
     </form>
   </div>
-  <div class="d-flex align-items-center d-none d-lg-block">
+  <div class="d-lg-flex align-items-center d-none">
     <figure class="profile-img mb-0">
       <img src="assets/images/image-jeremy.png" alt="Profile image" />
     </figure>

@@ -16,7 +16,8 @@ import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
     NgbDropdownModule,
   ],
   exports:[
-    CardComponent, SearchPipe
+    CardComponent,
+     SearchPipe
   ]
 })
 export class SharedModule { }

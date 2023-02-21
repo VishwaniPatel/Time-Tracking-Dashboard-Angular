@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { OverlayService } from 'src/app/core/Service/overlay.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DashboardService } from 'src/app/dashboard/dashboard.service';
+import { DashboardService } from 'src/app/dashboard/Service/dashboard.service';
 
 @Component({
   selector: 'app-card',
@@ -11,7 +11,7 @@ import { DashboardService } from 'src/app/dashboard/dashboard.service';
 export class CardComponent implements OnInit {
   @Input() data: any;
   @Output() id: EventEmitter<number> = new EventEmitter<number>();
-  constructor(private modalService: NgbModal,private dashboardService:DashboardService) {
+  constructor(private modalService: NgbModal) {
     this.data = [];
     // this.title = " ";
   }
@@ -24,10 +24,7 @@ export class CardComponent implements OnInit {
   onDelete(id:number){
   console.log(id);
   this.id.emit(id);
-  // this.dashboardService.deleteCompany(id).subscribe((res)=>{
-  //   console.log("Card deleted");
-    
-  // })
+  this.modalService.dismissAll();
   }
   
 }

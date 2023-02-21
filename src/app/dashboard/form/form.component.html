@@ -1,1 +1,196 @@
-<p>form works!</p>
+<!-- company form  -->
+<div class="form-wrapper bg-white p-4 rounded">
+  <div class="w-100 h-100 container mt-4">
+    <h3 class="text-center mb-3">{{ title }} Card Data</h3>
+    <!-- form strat -->
+    <form class="" [formGroup]="cardForm">
+      <label for="" class="mb-3">Add Title</label>
+      <div class="form-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="title"
+          placeholder="Add title here"
+        />
+        <div
+          *ngIf="
+            f['title'].invalid &&
+            (isSubmitted || f['title'].touched || f['title'].dirty)
+          "
+        >
+          <div
+            *ngIf="f['title'].errors && f['title'].errors['required']"
+            class="text-danger"
+          >
+            Card title is Required.
+          </div>
+        </div>
+      </div>
+      <!-- Daily data input field -->
+      <label for="" class="mb-3">Add Daily Data</label>
+      <div formGroupName="timeframes">
+        <div class="d-flex mb-3" formGroupName="daily">
+          <div class="form-group me-3">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="current"
+              placeholder="Add Current Data"
+            />
+            <div
+              *ngIf="
+                cardForm.get('timeframes.daily.current')?.invalid &&
+                (isSubmitted ||
+                  cardForm.get('timeframes.daily.current')?.touched ||
+                  cardForm.get('timeframes.daily.current')?.dirty)
+              "
+            >
+              <div
+                *ngIf="cardForm.get('timeframes.daily.current')?.errors"
+                class="text-danger"
+              >
+                Current Data is Required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="previous"
+              placeholder="Add Previous Data"
+            />
+            <div
+              *ngIf="
+                cardForm.get('timeframes.daily.previous')?.invalid &&
+                (isSubmitted ||
+                  cardForm.get('timeframes.daily.previous')?.touched ||
+                  cardForm.get('timeframes.daily.previous')?.dirty)
+              "
+            >
+              <div
+                *ngIf="cardForm.get('timeframes.daily.previous')?.errors"
+                class="text-danger"
+              >
+                Previous Data is Required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Weekly data input field -->
+        <label for="" class="mb-3">Add Weekly Data</label>
+        <div class="d-flex mb-3" formGroupName="weekly">
+          <div class="form-group me-3">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="current"
+              placeholder="Add Current Data"
+            />
+            <div
+              *ngIf="
+                cardForm.get('timeframes.weekly.current')?.invalid &&
+                (isSubmitted ||
+                  cardForm.get('timeframes.weekly.current')?.touched ||
+                  cardForm.get('timeframes.weekly.current')?.dirty)
+              "
+            >
+              <div
+                *ngIf="cardForm.get('timeframes.weekly.current')?.errors"
+                class="text-danger"
+              >
+                Current Data is Required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="previous"
+              placeholder="Add Previous Data"
+            />
+            <div
+              *ngIf="
+                cardForm.get('timeframes.weekly.previous')?.invalid &&
+                (isSubmitted ||
+                  cardForm.get('timeframes.weekly.previous')?.touched ||
+                  cardForm.get('timeframes.weekly.previous')?.dirty)
+              "
+            >
+              <div
+                *ngIf="cardForm.get('timeframes.weekly.previous')?.errors"
+                class="text-danger"
+              >
+                Previous Data is Required.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Monthly data input field -->
+        <label for="" class="mb-3">Add Monthly Data</label>
+        <div class="d-flex mb-3" formGroupName="monthly">
+          <div class="form-group me-3">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="current"
+              placeholder="Add Current Data"
+            />
+            <div
+              *ngIf="
+                cardForm.get('timeframes.monthly.current')?.invalid &&
+                (isSubmitted ||
+                  cardForm.get('timeframes.monthly.current')?.touched ||
+                  cardForm.get('timeframes.monthly.current')?.dirty)
+              "
+            >
+              <div
+                *ngIf="cardForm.get('timeframes.monthly.current')?.errors"
+                class="text-danger"
+              >
+                Current Data is Required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              formControlName="previous"
+              placeholder="Add Previous Data"
+            />
+            <div
+              *ngIf="
+                cardForm.get('timeframes.monthly.previous')?.invalid &&
+                (isSubmitted ||
+                  cardForm.get('timeframes.monthly.previous')?.touched ||
+                  cardForm.get('timeframes.monthly.previous')?.dirty)
+              "
+            >
+              <div
+                *ngIf="cardForm.get('timeframes.monthly.previous')?.errors"
+                class="text-danger"
+              >
+                Previous Data is Required.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-3 d-flex justify-content-center">
+        <div>
+          <button type="button" class="btn btn-light me-3" (click)="onReset()">
+            Reset
+          </button>
+          <button type="button" class="btn btn-primary" (click)="onSave()">
+            Add
+          </button>
+        </div>
+      </div>
+    </form>
+    <!-- form--end-- -->
+  </div>
+</div>

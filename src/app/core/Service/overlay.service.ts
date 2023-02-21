@@ -1,11 +1,15 @@
 import { ComponentRef, Injectable } from '@angular/core';
 import {ComponentType, Overlay} from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class OverlayService {
-
-  constructor(private overLay: Overlay) { }
+  public closeDialog: Subject<boolean>;
+  public instance: any;
+  constructor(private overLay: Overlay) {
+    this.closeDialog = new Subject();
+   }
 
   open(component:any){
     const positionStrategy = this.overLay.position().global().centerHorizontally().centerVertically();
@@ -13,14 +17,21 @@ export class OverlayService {
     const overlayRef = this.overLay.create({
       positionStrategy, 
       hasBackdrop: true, 
-      backdropClass: 'overlay-backdrop', 
-      panelClass: 'overlay-panel',
+      // backdropClass: 'overlay-backdrop', 
+      // panelClass: 'overlay-panel',
     });
 
     const portal = new ComponentPortal(component);
     overlayRef.attach(portal);
 
     overlayRef.backdropClick().subscribe(() => { overlayRef.detach(); });
+
+    this.closeDialog.subscribe((res) => {
+      if (res == true) {
+        overlayRef.detach();
+      }
+    });
+    return this.instance;
   }
 
 }

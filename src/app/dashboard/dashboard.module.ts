@@ -5,6 +5,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { DialogboxComponent } from './dialogbox/dialogbox.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import { DialogboxComponent } from './dialogbox/dialogbox.component';
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    // FormsModule,
+    // ReactiveFormsModule
   ],
   exports:[
     DashboardComponent
