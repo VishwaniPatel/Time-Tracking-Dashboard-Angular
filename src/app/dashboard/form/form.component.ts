@@ -56,14 +56,10 @@ constructor(
     })
   })
   //issubmit
-  this.isSubmitted = false
+  this.isSubmitted = false;
 
-  // /for getting data through id 
-  // this.actRoute.params.subscribe(res => {
-  //   this.id = res['id'];
-  // })
   //initializing cardData
-  this.cardData = []
+  this.cardData = [];
 }
 
 ngOnInit(): void{

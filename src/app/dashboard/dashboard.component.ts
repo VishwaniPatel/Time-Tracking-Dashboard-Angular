@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { OverlayService } from '../core/Service/overlay.service';
 import { DashboardService } from './Service/dashboard.service';
-import { DialogboxComponent } from './dialogbox/dialogbox.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormComponent } from './form/form.component';
 import { cardData } from './model/card.model';
 import { DataTransferService } from './Service/data-transfer.service';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +25,7 @@ export class DashboardComponent {
   public searchBoxText: any;
   public alldata: any;
   public Form: FormGroup;
+  
   
 
   constructor(private dashboardService: DashboardService,private fb : FormBuilder, private overlayService: OverlayService,private dataTransfer:DataTransferService) {
@@ -48,8 +49,8 @@ export class DashboardComponent {
         this.getCardDetails();
       }
     })
-
-
+    
+    
     this.dashboardService.seacrhBoxText$.subscribe((res:any)=>{
       console.log(res);
       
@@ -88,9 +89,10 @@ export class DashboardComponent {
         previous: a.timeframes?.monthly?.previous
       }} );
       this.daily();
+      this.dataTransfer.allDataSubject.next(this.alldata);
     })
+    
   }
-  
   /**
    * On click of daily 
   */

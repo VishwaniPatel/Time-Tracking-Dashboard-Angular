@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Daily (Current Data)</th>
+      <th scope="col">Daily (Previous Data)</th>
+      <th scope="col">Weekly (Current Data)</th>
+      <th scope="col">Weekly (Previous Data)</th>
+      <th scope="col">Monthly (Current Data)</th>
+      <th scope="col">Monthly (Previous Data)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Display data -->
+    <tr *ngFor="let data of cardData">
+      <td scope="row">{{ data.id }}</td>
+      <td>
+        {{ data.title }}
+      </td>
+      <td>{{ data.timeframes.daily.current }}</td>
+      <td>{{ data.timeframes.daily.previous }}</td>
+      <td>{{ data.timeframes.weekly.current }}</td>
+      <td>{{ data.timeframes.weekly.previous }}</td>
+      <td>{{ data.timeframes.monthly.current }}</td>
+      <td>{{ data.timeframes.monthly.previous }}</td>
+    </tr>
+  </tbody>
+</table>

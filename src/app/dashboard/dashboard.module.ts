@@ -4,13 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from '../shared/shared.module';
-import { DialogboxComponent } from './dialogbox/dialogbox.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActivitiesComponent } from '../activities/activities.component';
 
 @NgModule({
   declarations: [
-    DashboardComponent,
-    DialogboxComponent
+    DashboardComponent
   ],
   imports: [
     CommonModule,
