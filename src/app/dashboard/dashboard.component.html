@@ -7,13 +7,16 @@
     </div>
     <div class="d-flex flex-column flex-lg-row">
       <div class="profile me-0 me-lg-4 mb-4 mb-lg-0">
-        <div class="profile-card border-radius p-4">
+        <div
+          class="profile-card border-radius p-4"
+          *ngFor="let data of profileData"
+        >
           <div class="profile-wrapper mb-3">
-            <img src="assets/images/image-jeremy.png" alt="Profile image" />
+            <img src="{{ data.imageName }}" alt="Profile image" />
           </div>
           <div>
             <span class="title text-secondary">Report for</span>
-            <p class="profile-name mb-2 mb-lg-4">Jeremy Robson</p>
+            <p class="profile-name mb-2 mb-lg-4">{{ data.userName }}</p>
           </div>
         </div>
         <div class="filter p-4">

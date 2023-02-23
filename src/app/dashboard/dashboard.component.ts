@@ -6,11 +6,12 @@ import { FormComponent } from './form/form.component';
 import { cardData } from './model/card.model';
 import { DataTransferService } from './Service/data-transfer.service';
 import { Observable, Subject } from 'rxjs';
+import { profileData } from '../profile-form/profile.model';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
   public dailyCardData: any;
@@ -25,10 +26,14 @@ export class DashboardComponent {
   public searchBoxText: any;
   public alldata: any;
   public Form: FormGroup;
-  
-  
+  public profileData: profileData[];
 
-  constructor(private dashboardService: DashboardService,private fb : FormBuilder, private overlayService: OverlayService,private dataTransfer:DataTransferService) {
+  constructor(
+    private dashboardService: DashboardService,
+    private fb: FormBuilder,
+    private overlayService: OverlayService,
+    private dataTransfer: DataTransferService
+  ) {
     this.dailyCardData = [];
     this.weeklyCardData = [];
     this.monthlyCardData = [];
@@ -37,100 +42,107 @@ export class DashboardComponent {
     this.dailyClick = false;
     this.weeklyClick = false;
     this.monthlyClick = false;
+    this.profileData = [];
     this.Form = this.fb.group({
-      searchinput: ['', [Validators.required, Validators.minLength(2)]]
-    })
+      searchinput: ['', [Validators.required, Validators.minLength(2)]],
+    });
   }
-  
+
   ngOnInit(): void {
     //Loads the data when it is added or updated
     this.dataTransfer.communicationData.subscribe((data) => {
       if (data) {
         this.getCardDetails();
       }
-    })
-    
-    
-    this.dashboardService.seacrhBoxText$.subscribe((res:any)=>{
+    });
+
+    this.dataTransfer.profileDataTransfer.subscribe((data) => {
+      this.profileData = data;
+    });
+
+    this.dashboardService.seacrhBoxText$.subscribe((res: any) => {
       console.log(res);
-      
-      if(res){
-        this.searchBoxText=res;
+
+      if (res) {
+        this.searchBoxText = res;
         this.getCardDetails();
       }
-    })
+    });
     this.getCardDetails();
   }
   // get card details using service
-  getCardDetails(){
-    this.dashboardService.getCardData().subscribe((data:cardData[]) =>
-    {
+  getCardDetails() {
+    this.dashboardService.getCardData().subscribe((data: cardData[]) => {
       this.alldata = data;
       // this.titles=data.map(a=> a.title);
       // map daily data to be display on cards
-      this.dailyCardData = data.map(a=> {return{
-        id:a.id,
-        title: a.title,
-        current: a.timeframes?.daily?.current,
-        previous: a.timeframes?.daily?.previous
-      }});
-    // map weekly data to be display on cards
-    this.weeklyCardData = data.map(a=>  {return{
-      id:a.id,
-      title: a.title,
-      current: a.timeframes?.weekly?.current,
-      previous: a.timeframes?.weekly?.previous
-    }} );
-    // map monthly data to be display on cards
-      this.monthlyCardData = data.map(a=>  {return{       
-        id:a.id,
-        title: a.title,
-        current: a.timeframes?.monthly?.current,
-        previous: a.timeframes?.monthly?.previous
-      }} );
+      this.dailyCardData = data.map((a) => {
+        return {
+          id: a.id,
+          title: a.title,
+          current: a.timeframes?.daily?.current,
+          previous: a.timeframes?.daily?.previous,
+        };
+      });
+      // map weekly data to be display on cards
+      this.weeklyCardData = data.map((a) => {
+        return {
+          id: a.id,
+          title: a.title,
+          current: a.timeframes?.weekly?.current,
+          previous: a.timeframes?.weekly?.previous,
+        };
+      });
+      // map monthly data to be display on cards
+      this.monthlyCardData = data.map((a) => {
+        return {
+          id: a.id,
+          title: a.title,
+          current: a.timeframes?.monthly?.current,
+          previous: a.timeframes?.monthly?.previous,
+        };
+      });
       this.daily();
       this.dataTransfer.allDataSubject.next(this.alldata);
-    })
-    
+    });
   }
   /**
-   * On click of daily 
-  */
- daily(){
-   this.cardData = this.dailyCardData;
-   this.dailyClick = true;
-   this.monthlyClick=false;
-   this.weeklyClick=false;
-  }
-  /**
-   * On click of weekly 
+   * On click of daily
    */
-  weekly(){
-    this.cardData=this.weeklyCardData;
-      this.weeklyClick = true;
-      this.monthlyClick=false;
-      this.dailyClick=false;
+  daily() {
+    this.cardData = this.dailyCardData;
+    this.dailyClick = true;
+    this.monthlyClick = false;
+    this.weeklyClick = false;
+  }
+  /**
+   * On click of weekly
+   */
+  weekly() {
+    this.cardData = this.weeklyCardData;
+    this.weeklyClick = true;
+    this.monthlyClick = false;
+    this.dailyClick = false;
   }
   /**
    * On click of monthly
    */
-  monthly(){
-    this.cardData=this.monthlyCardData;
-      this.monthlyClick = true;
-      this.weeklyClick=false;
-      this.dailyClick=false;
+  monthly() {
+    this.cardData = this.monthlyCardData;
+    this.monthlyClick = true;
+    this.weeklyClick = false;
+    this.dailyClick = false;
   }
 
-  onDeleteCard(id:number){
-    this.dashboardService.deleteCompany(id).subscribe((response)=>{
+  onDeleteCard(id: number) {
+    this.dashboardService.deleteCompany(id).subscribe((response) => {
       this.getCardDetails();
-    })
+    });
   }
-  onAdd(){
+  onAdd() {
     this.overlayService.open(FormComponent);
   }
   // onEditCard(id:number){
   //   this.dashboardService.editCardData(this.cardData)
   // }
-
 }

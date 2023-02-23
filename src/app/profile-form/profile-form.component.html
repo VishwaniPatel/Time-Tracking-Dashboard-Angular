@@ -1,0 +1,74 @@
+<!-- company form  -->
+<div class="form-wrapper bg-white p-4 rounded">
+  <div class="w-100 h-100 container mt-4">
+    <h3 class="text-center mb-3">Edit Profile Data</h3>
+    <!-- form strat -->
+    <form class="" [formGroup]="profileForm">
+      <div class="form-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="userName"
+          placeholder="User Name"
+        />
+        <!-- <div
+          *ngIf="
+            profileForm.controls['userName'].invalid &&
+            (isSubmitted ||
+              profileForm.controls['userName'].touched ||
+              profileForm.controls['userName'].dirty)
+          "
+        >
+          <div
+            *ngIf="
+              profileForm.controls['userName'].errors &&
+              profileForm.controls['userName'].errors['required']
+            "
+            class="text-danger"
+          >
+            User Name is Required.
+          </div>
+        </div> -->
+      </div>
+      <!-- Select Logo field -->
+      <div class="form-group mb-3">
+        <input
+          type="file"
+          (change)="imageUploaded($event)"
+          id="upload"
+          class="form-control"
+          formControlName="profileImage"
+        />
+
+        <!-- Validation for profile image -->
+        <!-- <div
+          *ngIf="
+            profileForm.controls['profileImage'].invalid &&
+            (isSubmitted ||
+              profileForm.controls['profileImage'].touched ||
+              profileForm.controls['profileImage'].dirty)
+          "
+        >
+          <span
+            class="text-danger"
+            *ngIf="profileForm.controls['profileImage'].errors?.['required']"
+          >
+            Upload profile image.
+          </span>
+        </div> -->
+      </div>
+
+      <div class="mt-3 d-flex justify-content-center">
+        <div>
+          <button type="button" class="btn btn-light me-3" (click)="onReset()">
+            Reset
+          </button>
+          <button type="button" class="btn btn-primary" (click)="onEdit()">
+            Update
+          </button>
+        </div>
+      </div>
+    </form>
+    <!-- form--end-- -->
+  </div>
+</div>
